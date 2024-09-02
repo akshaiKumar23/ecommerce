@@ -1,9 +1,19 @@
 
 import { Link } from "react-router-dom";
 import { useProducts } from "../hooks/useProducts";
+import { useDispatch } from "react-redux";
+import { setCategory } from "../store/slices/categorySlice";
+import { useState } from "react";
 
 const Navbar = () => {
     const { data: categories } = useProducts("products/categories");
+    const dispatch = useDispatch();
+    const [selectedCategory, setSelectedCategory] = useState("");
+    const handleCategoryChange = (e) => {
+        const category = e.target.value;
+        setSelectedCategory(category);
+        dispatch(setCategory(category));
+    }
 
     return (
         <nav className="bg-gray-800 p-4">
@@ -14,17 +24,19 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div>
-                    <Link to="favorites" className="text-white">
+                    <Link to="favorites" className="text-white text-3xl font-bold">
                         Favorites
                     </Link>
                 </div>
                 <div className="w-1/2">
                     <select
+                        value={selectedCategory}
+                        onChange={handleCategoryChange}
                         className="w-full p-2 rounded-lg text-gray-800"
                     >
                         <option value="">Select Category</option>
                         {categories.map((category, index) => (
-                            <option key={index} value={category}>
+                            <option key={index} value={category} >
                                 {category}
                             </option>
                         ))}

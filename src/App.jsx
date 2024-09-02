@@ -6,9 +6,6 @@ import ProductDetails from './pages/ProductDetailsPage';
 import FavoritesPage from './pages/FavoritesPage';
 
 function App() {
-
-
-
   return (
     <div>
       <Navbar />
