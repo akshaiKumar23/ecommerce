@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { addFavorites } from '../store/slices/favoritesProductsSlice';
 
 const ProductDetailsPage = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
     const dispatch = useDispatch()
     useEffect(() => {
         const fetchProductDetails = async () => {
@@ -33,6 +34,7 @@ const ProductDetailsPage = () => {
 
     const handleAddToFavorite = (product) => {
         dispatch(addFavorites(product))
+        navigate("/favorites")
     }
     return (
         <div className="container mx-auto p-4">
@@ -47,7 +49,7 @@ const ProductDetailsPage = () => {
                     <p className="text-gray-700 mb-4">{product.description}</p>
                     <div className="text-xl font-semibold text-green-500">${product.price}</div>
 
-                    <button onClick={() => handleAddToFavorite(product)} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg">
+                    <button onClick={() => handleAddToFavorite(product)} className="mt-4 bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
                         Add to Cart
                     </button>
 
