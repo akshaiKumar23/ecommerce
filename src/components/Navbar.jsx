@@ -3,6 +3,7 @@ import { useProducts } from "../hooks/useProducts";
 import { useDispatch } from "react-redux";
 import { setCategory } from "../store/slices/categorySlice";
 import { useState } from "react";
+import ToggleMode from "./ToggleMode";
 
 const Navbar = () => {
     const { data: categories } = useProducts("products/categories");
@@ -26,6 +27,7 @@ const Navbar = () => {
                     <Link to="favorites" className="text-white text-lg font-medium hover:text-gray-400 transition duration-300">
                         Favorites
                     </Link>
+                    <ToggleMode />
                     <div className="relative">
                         <select
                             value={selectedCategory}
