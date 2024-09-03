@@ -1,8 +1,18 @@
-import ProductList from "../components/ProductList"
+import { Suspense } from "react"
+import { ErrorBoundary } from "react-error-boundary";
+
+import { lazy } from 'react';
+
+const ProductList = lazy(() => import("../components/ProductList"))
 
 const HomePage = () => {
     return (
-        <ProductList />
+        <ErrorBoundary FallbackComponent={<div>Something went wrong</div>}>
+            <Suspense fallback="Loading">
+                <ProductList />
+            </Suspense>
+        </ErrorBoundary>
+
     )
 }
 
