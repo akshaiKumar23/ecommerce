@@ -5,9 +5,11 @@ import Navbar from './components/Navbar';
 
 import FavoritesPage from './pages/FavoritesPage'
 import { lazy, Suspense } from 'react';
+import CartPage from './pages/CartPage';
 
 const ProductDetailsPage = lazy(() => import("./pages/ProductDetailsPage"))
-const HomePage = lazy(() => import("./pages/HomePage"))
+import HomePage from './pages/HomePage';
+
 
 function App() {
   return (
@@ -15,16 +17,14 @@ function App() {
       <Navbar />
       <Routes>
 
-        <Route path="/" element={<Suspense fallback={<div>Loading...</div>}>
-          <HomePage />
-        </Suspense>} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/products/:id" element={<Suspense fallback={<div>Loading...</div>}>
           <ProductDetailsPage />
         </Suspense>} />
 
         <Route path='favorites' element={<FavoritesPage />} />
 
-
+        <Route path='/cart' element={<CartPage />} />
       </Routes>
     </div>
   );

@@ -6,17 +6,20 @@ export const useProducts = (payload) => {
     useEffect(() => {
 
         const fetchProducts = async () => {
-            await new Promise((resolve) => setTimeout(resolve, 2000));
-            const res = await fetch(`https://fakestoreapi.com/${payload}`);
+            const res = await fetch(`https://fakestoreapi.in/api/${payload}`);
             const data = await res.json();
             console.log(payload);
-            setData(data);
+            if (payload === "products/category") {
+                setData(data.categories)
+                console.log(data.categories);
+            }
+            else {
+                setData(data.products);
+            }
+
+
         }
         fetchProducts();
     }, [payload])
-    if (data === null) {
-
-        throw new Promise(() => { });
-    }
     return { data, setData };
 }

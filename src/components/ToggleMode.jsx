@@ -18,7 +18,7 @@ const ToggleMode = () => {
         }
     }
     return (
-        <input type="checkbox" className="toggle toggle-info" defaultChecked onChange={handleToggle} />
+        <input value={theme} type="checkbox" className="toggle toggle-info" defaultChecked onChange={handleToggle} />
     )
 }
 
