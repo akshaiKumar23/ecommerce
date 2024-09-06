@@ -3,6 +3,8 @@ import { useProducts } from "../hooks/useProducts";
 import ProductCard from "./ProductCard";
 import { useState } from "react";
 import CardSkeleton from "./CardSkeleton";
+import ImageCarousel from "./ImageCarousel";
+
 
 const ProductList = () => {
     const category = useSelector((state) => state.categories);
@@ -28,6 +30,7 @@ const ProductList = () => {
 
     return (
         <div className="container mx-auto px-4 lg:px-8 mt-10">
+            <ImageCarousel />
             <div className="flex items-center justify-between mb-4">
                 <h1 className="text-4xl font-bold">{category ? category.toUpperCase() : "All Products"}</h1>
 

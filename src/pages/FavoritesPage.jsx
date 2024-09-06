@@ -25,7 +25,6 @@ const FavoritesPage = () => {
                                 image={product.image}
                                 price={product.price}
                                 title={product.title}
-                                rating={product.rating.rate}
                                 category={product.category}
                             />
                             <button
