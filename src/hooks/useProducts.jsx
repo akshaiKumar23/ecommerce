@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 export const useProducts = (payload) => {
     const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
 
         const fetchProducts = async () => {
@@ -17,9 +18,9 @@ export const useProducts = (payload) => {
                 setData(data.products);
             }
 
-
+            setLoading(false);
         }
         fetchProducts();
     }, [payload])
-    return { data, setData };
+    return { data, setData, loading };
 }
